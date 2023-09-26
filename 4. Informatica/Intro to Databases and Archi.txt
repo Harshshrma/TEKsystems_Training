@@ -1,0 +1,445 @@
+ /$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$  /$$$$$$$  /$$      /$$  /$$$$$$  /$$$$$$$$ /$$$$$$  /$$$$$$   /$$$$$$ 
+|_  $$_/| $$$ | $$| $$_____//$$__  $$| $$__  $$| $$$    /$$$ /$$__  $$|__  $$__/|_  $$_/ /$$__  $$ /$$__  $$
+  | $$  | $$$$| $$| $$     | $$  \ $$| $$  \ $$| $$$$  /$$$$| $$  \ $$   | $$     | $$  | $$  \__/| $$  \ $$
+  | $$  | $$ $$ $$| $$$$$  | $$  | $$| $$$$$$$/| $$ $$/$$ $$| $$$$$$$$   | $$     | $$  | $$      | $$$$$$$$
+  | $$  | $$  $$$$| $$__/  | $$  | $$| $$__  $$| $$  $$$| $$| $$__  $$   | $$     | $$  | $$      | $$__  $$
+  | $$  | $$\  $$$| $$     | $$  | $$| $$  \ $$| $$\  $ | $$| $$  | $$   | $$     | $$  | $$    $$| $$  | $$
+ /$$$$$$| $$ \  $$| $$     |  $$$$$$/| $$  | $$| $$ \/  | $$| $$  | $$   | $$    /$$$$$$|  $$$$$$/| $$  | $$
+|______/|__/  \__/|__/      \______/ |__/  |__/|__/     |__/|__/  |__/   |__/   |______/ \______/ |__/  |__/
+
+                                                                                                            
+
+
+====== 30th March 2023 ======
+There are 13 Codd Rules from 0 -12 which define which database is relational and which is not
+https://www.tutorialspoint.com/e-f-codd-s-12-rules-for-rdbms
+
+			DBMS					|		RDBMS
+_____________________________________________________________________________________________________
+DBMS is a stand-alone - works only on stand alone environments		RDBMS is a logical one.
+Its not in the network, it cant be shared				
+Its not a client server architecture, because it cant be shared
+Its not involved with the project development process
+not safe and secure	
+
+Data model is required for understanding the data. 
+Data model is always open-type
+
+Data Base works on Normalization 
+Data Warehouse works on De-Normalization
+
+Never say Data warehouse has a parent-child dependency
+
+Data warehouse is like - You name it, You do it. Its also flexible 
+But this is not the same for the Database
+
+Data mart is the smaller version of the Data warehouse (for exmaple we can make a separate data waehouse for each department of the company)
+Data marts can be connected (combined) 
+
+-- -- -- -- CONFIRM DIMENSION is a dimension that connects the data marts 
+
+====== IMPORTANT TOPICS ======
+Meta data 
+ODS - operational data store - based on the operational system (current business)
+staging
+Data mart
+
+====== ANATOMY OF QUERY ======
+
+select * from table_name;
+
+select - command
+from "select" to "from" - select list
+
+
+where - filtering process
+
+
+------
+Metadata is called as Repository in Informatica
+
+Informatica is purely fromt end
+So the informatica alone is incapable of storing the data
+It needs the support of RDBMS for that use
+
+rep file in the informatica contains the script files about the tables loaded into it
+
+
+SCHEMA is the collection of related objects stored in a specific account
+
+Repository manager and the Administrator manager are meant only for the Admin to access.
+
+We need 	1. Source
+		2. Target 
+		3. Rep (Informatica Repository(Meta Data of the Informatica))
+
+Informatica has one prob:	Unless it completes the job, it will not show whats the problem in the job
+
+
+
+Informatica Intelligent Cloud Services - IICS is the cloud version of Informatica
+
+Data model is moved to Dimension model by the system architect, which means star schema (fact and dimension tables are already created by the architect)
+One fact table and multiple dimension tables can be created (max of 15 dimension tables can be ok!, more than that it creates the performance issues!)
+
+we need to import the data from the DataBase to the Informatica as Informatica is only the front-end part
+
+
+====== 31st March 2023 ======
+Lifecycle product: we cant show the product in the middle of the process
+Data Base, Data Base is a lifecycle product but
+Python is not a lifecycle product
+
+Data Warehouse is also a RDBMS Package
+
+If you are using the terminology - fact and dimension - you are talking about data warehousing
+If you are using the terminology - tables - you are talking about the data base
+
+DSS - Decision Support System (used by the company to analyse the trends)
+Data warehouse is used by DSS 
+Day-to-Day transactions - Operational Systems
+
+Granularity/ Grain - tells you at what level the work has to be done
+			- if you want to do the analysis on hourly basis - Granuarity is Hours
+			- if you want to do the analysis on daily basis - Granularity is Days
+- This is time levely Granularity
+
+- One more Granularity is Region wise Granularity
+
+- Log files are generate if its client-server architecture
+
+- Foreign key tables are not unique
+
+    /----------------------------------------ETL for Data Warehousing------------------------------------\
+
+		
+		
+		Operational Systems							Decision Support
+
+       	    [RDBMS] [Mainframe] [Other]							[Data Warehouse]
+
+	- Transactional data				- aggregate data		- Aggregated data
+	- Optimized for transaction response time	- cleanse data			- Historical data
+	- current					- consolidate data
+	- normalized or de-normalized data		- de-normalize data
+							- apply business rules
+
+     \______________Extract________________/	      \_______Transform_______/	     \________Load________/
+
+
+
+====== Execution of SQL statements ======
+
+select statements triggers 3 processes: 	parsing ---> execution ---> fetching
+
+DML connands does only 2 processes: 		parsing ---> execution
+
+	parsing: it checks syntax, checks whether the table is yours or not, spell checks, authentications, authorizations
+	- all this process is validated with the metadata
+
+	fetching: process occurs with the help of implicit cursor (also explicit cursor exists)
+
+------ WorkFlow:
+
+1. Query
+
+2. Parsing with the help of metadata
+	syntax check , authorization, authentication, objects references, attributes references, column references, spell checks
+
+3. Execution in the memory (cache, buffer)
+
+4. Fetching with the help of cursors
+
+
+
+Source Qualifier is the Native Data type of the informatica in the Mapping part of the Mapper
+
+
+
+
+====== 3rd April 2023 ======
+
+- data model is for data base
+- you get physical tables after getting the data into the logical design
+- data model refers to database
+- dimension model refers to data ware house
+- Inmon theory roff Kimball theory use these two theories for the designing the data warehouse
+
+-- The Kimball Design:
+----------------------------------------
+	1. select business process - awareness about the cost, revenue and sales
+	2. declare the grain - granularity (level of analysis what you expect from the client) (granularity might change)
+	3. choose dimension - when execution starts first we create the dimensions, not the facts
+	4. identify facts (metrics) - first phase of analysis happens on the facts
+
+- facts are the summarized information stored in the star schema under data mart
+	- a data mart can consist of one star schema or multiple star schema (constellation)
+	
+- dimensions are the descriptive in nature, which is a part of star schema.
+
+
+-- Interview Question:	Is the data coming directly coming from the database goes and sits in the data warehouse?
+-- Answer:	the dimension data should not have the redundant data which the data might have, so we should do the lookup transformation to the data 
+		(time dimension(date and time) will be the part of the lookup) the if there no matches with the desired target then it moves to the 
+		data warehouse
+
+- when ever you are using an aggregate information, that means there is redundant data in the database or data warehouse
+
+         +----------------------+
+         |   Data Extraction    |
+         +-----------+----------+
+                     |
+                     v
+         +----------------------+
+         |  Data Transformation |
+         +-----------+----------+
+                     |
+                     v
+         +----------------------+
+         | Dimension Table Load |
+         +-----------+----------+
+                     |
+                     v
+         +----------------------+
+         |    Fact Table Load   |
+         +----------------------+
+
+
+-- The Inmon Model (talks about the Enterprise Data Warehouse)
+-------------------------------------------------
+- Consists of all databases and information systems in organization (CIF - Corporate Information Factory)
+
+- Defines overall database environment as:
+	1. Operational
+	2. Atomic data warehouse
+	3. Departmental
+	4. Individual
+- The Warehouse is part of the bigger whole (CIF)
+
+
+
+-- Bill Inmon Model: Top-Down
+---------------------------------------
+- Recommends  big Centralized enterprise data warehouse where all available data from transaction systems are consolidated into....
+
+- a subject-oriented, integrated, time-variant and non-volatile collection of data into DSS... then data marts are built for analytic needs of depts
+
+- Uses ER model to organize the data in enterprise data warehouse
+
+- Inmon gives his opinion of Dependent data marts
+
+- More Complex, Expensive & Longer to Deliver
+
+
+-- Data warehouse is a multi-dimensional architecture (not physically, logically)
+-- Fact table is connected to a multiple dimensions (which means the fact table sees them in those number of ways or those number of prespectives)
+
+
+- BI contains many start-schemas of Facts and Dimensions and all the possible combinations can be collectively called as the Data Marts
+
+       +-------------+
+       |    BI       |
+       |             |
+       +-------------+
+               |
+               | contains
+               |
+       +-------------+
+       | Start-Schema|
+       | of Facts &  |
+       | Dimensions  |
+       +-------------+
+               |
+               | can be used to build
+               |
+       +-------------+
+       |  Data Marts |
+       +-------------+
+
+- Fact doesnot have any presence without the dimension table, so we build the dimension table first
+
+- Confirm Dimension: contains two Data Marts, which means it connects two different Data Marts based on the necessacity
+
+- SnowFlake schema is the extension of the dimension
+        +----------------+
+        |   Fact Table   |
+        |                |
+        |    (Measures)  |
+        +----------------+
+                |
+                | has
+                |
+        +----------------+
+        |  Dimension 1   |
+        |                |
+        |    (Attribute) |
+        +--------+-------+
+                 |
+                 | has
+                 |
+        +--------+-------+
+        |  Dimension 2   |
+        |                |
+        |    (Attribute) |
+        +----------------+
+
+
+- NOTE: We should not design too many SnowFlake schemas as it moves away from the sense of Data Warehousing, then its not a pure Data Warehousing.
+
+
+    +---------------------+         +-------------------------+
+    |   Data Mart 1       |         |    Data Mart 2          |
+    |                     |         |                         |
+    | +-----------------+ |         | +---------------------+ |
+    | | Star Schema 1   | |         | | Star Schema 2       | |
+    | +-----------------+ |         | +---------------------+ |
+    |         |           |         |         |               |
+    |         | has       |         |         | has           |
+    |         |           |         |         |               |
+    | +-----------------+ |         | +---------------------+ |
+    | | Confirm Dim     | |         | | Confirm Dim         | |
+    | +-----------------+ |         | +---------------------+ |
+    +---------------------+         +-------------------------+
+                         \           /
+                          \         /
+                           \       /
+                            +-----+
+                            | DM 3|
+                            |     |
+                            | +---+
+                            | | CD|
+                            | +---+
+                            +-----+
+
+
+------ Typical (Graphical) DWH Architecture ------
+
+- In ODS there is a concept of Snapshots which is similar to the functionality of GitHub Commit History
+- ODS is not necessary if the cleaning process is already done and the data is given
+
+       +-----------------+         +-----------------+         +-----------------+
+       |    Database     |         |   Data Snapshot |         |  Data Warehouse |
+       +-----------------+         +-----------------+         +-----------------+
+               |                           |                           	|
+               | Refresh Data Snapshot     |                           	|
+               |-------------------------->|                            |
+               |                           |  Load Data Snapshot        |
+               |                           |-------------------------->	|
+               |                           |                           	| 
+               |                           |   Load Data from Snapshot  |
+               |                           |-------------------------->	|
+               |                           |                           	|
+
+
+
+- MAPPING: mapping is a set of instruction between source and target
+
+- Activities Done in the Class: Expression, Filter and Sequence Generator (these are the Transformers)
+
+
+====== 4th April 2023 ======
+
+- you dont have the date stored in the data warehouse - you dont get to know the granularity of the data if the date is provided to you in the datawarehouse
+- you can divide the date with the granularity you want to analyse
+- to define the granularity level we need to define the time dimension in the target 
+- GRANULARITY IS IDENTIFIED BASED ON THE REDUNDANCY FACTOR
+
+- redundant data is always heavy data and takes more time to get the job done
+
+- source qualifier is an active transformer (based on the use case)
+
+- Heterogenous data cant be directly linked to the source qualifier, so this uses the help of JOINER 
+
+References:
+	https://community.spiceworks.com/topic/2384558-normal-and-bulk-loads
+	https://stackoverflow.com/questions/49602089/creating-and-populating-the-time-dimension
+====== 5th April 2023 ======
+
+- LOOKUP Transformation:
+it can be a file, source qualifier or table
+	- LookUp table is the table which stores the predefined values, In Informatica, a lookup table is a table used to retrieve additional 
+	information from a database or flat file. It contains the information needed to perform a lookup on the source data during the data 
+	integration process. The lookup transformation in Informatica is used to retrieve the data associated with the source 
+	data based on a key column.
+
+	- The lookup table can be stored in a database, such as Oracle, SQL Server, or MySQL, or in a flat file, such as a CSV or Excel file. 
+	The location of the lookup table will depend on the specific data integration requirements and the availability of the data.
+
+	- lookup obj is the object which is created at the time of transformation
+
+
+- LOOKUP give only the boolean output values
+
+- Basically LOOKUP is a passive operation
+
+- Also lookup is a burden for the server because it has to look everything(present in the database) with everything(incoming from the source)
+
+- Lookup is of 2 (two) types:
+	- Connected 
+	- Unconnected (there in the mapping but not in the flow) - used for small amounts of data
+- dont take too much of data into the lookup it creates burden again on the server
+
+- joiner, lookup, router, sorter, rank - requires more cache memory
+
+- always put the first columns that are more redundant in the case of SORT tranformation for a specific column
+
+- unconnected lookup is not connected with the input.
+
+
+
+- for every process we need a cache, but the lookup process needs extra cache
+
+/----------------------------------- LOOKUP FUNCTIONALITY -----------------------------------\
+
+				[Lookup condition e.g
+				 ITEM_ID = IN_ITEM_ID
+				 PRICE <= IN_PRICE]
++-----------------------+   	+-----------------------+   	+-----------------------+
+|                       |   	|                       |   	|                       |
+|     Input Value       + --->	|  Lookup Transformation| --->  |      Output with   	|
+|                       |   	|                       |   	|      lookup values	|
++-----------------------+   	+-----------------------+   	+-----------------------+
+                                    	^      |
+                                    	|      | Input values
+                     	 Lookup values 	|      |
+                                    	|      v
+                                +-----------------------+
+                                |                       |
+                                |    Lookup Source      |
+                                |                       |
+                                +-----------------------+
+
+
+
+
+- Slowly chaining dimension is the important part of any ETL Tool (mainly the LOOKUP Functionality of the Informatica)
+- Slowly changing dimension (SCD) is a concept in data warehousing that refers to how dimensions change over time. 
+	A slowly changing dimension is a dimension that changes slowly, or infrequently, over time.
+
+- It is of three (3) types 
+
+	Type 1: OLTP system support
+	Type 2:     (History)	- Date support 
+				- Flag support
+				- Time support
+	Type 3: Data warehouse
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

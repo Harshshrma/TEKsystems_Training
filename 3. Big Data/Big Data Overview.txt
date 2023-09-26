@@ -1,0 +1,206 @@
+====== Big Data Overview ======
+- Data that has high volume, variety, velocity, veracity and value
+- examples: manufacturing, 
+	    customers, 
+	    technology, 
+	    banking, 
+	    healthcare, 
+	    energy
+
+- Structured Data: Data will be following some format, with data arranged in the form of tables
+
+- Semi-Structured: Data will have some format but there is no common format
+-- json: key, value pairs
+-- xml: tags
+-- csv: comma separated values
+-- big data file formats: parquet, AVRO, ORC
+
+- Unstructured: there is no structured format
+-- video, audio, images, flatfiles, signals, pdf, worddocs
+
+- Quasi-Structured Data: Clickstream data
+
+====== Big Data Analytics Pipeline ======
+1. Data Ingestion: migrate data from one stored location to another location
+
+Tool 1: 
+	- SQOOP: (SQL to Hadoop) migrate data from structured storage to Hadoop (HDFS - Hadoop Distributed File System)
+	- bidirectional tool
+			
+					(Storage of Hadoop)
+		import->
+	[DBMS]	<====>	[SQL]	<====>	[HDFS]	(Data Lake)
+	      <-export
+	(source)			(destination)
+    - MySQL, 
+    - SQlite, 
+    - OracleDB
+
+====== Components of HADOOP Ecosystem ======
+
+Tool 2:
+	- flume: in flume.comfig file we configure 
+				- source (IP Address)
+				- sink (HDFS - Destination)
+				- channel 
+	- ingestion of stream data from source (twitter, ip address, or any live stream)
+	- 
+
+2. Data Collection Layer: Temporary storage within the tools like KAFKA during the data ingestion from another sources
+
+3. Data Storage Layer: Permanent storage layer
+			- they contain: 
+				- S3
+				- HDFS
+				- Gluster FS(File System)
+
+4. Data Processing Layer: This contains:
+				- Batch Processing (like SQL Queries) (Hive, SPARK, PIG - use map-reduce methodologies)
+				- Stream Processing (data generated from live source like SPARK)
+				- Hybrid Processing
+
+5. Data Query Layer: SPARK SQL, Presto, Amazon REDSHIFT, HIVE
+			
+6. Analytics Engine: this contains:
+				- Statistical Analysis
+				- Semantic Analysis
+				- Predictive Modeling
+				- Text Analysis
+				(we do these analysis with the help of few programming languages like:
+					- Python
+					- Java
+					- Scala
+					- MLlib (provided by SPARK)
+				)
+
+7. Data Visualization Layer: Real-time Dashboard like
+				- powerBI (Azure)
+				- Tableau
+				- Real time dashboard Tableau, intelligent agents recommendations
+
+++++++ ====== 16th March 2023 ====== ++++++
+
+- hadoop is a framework that allows distributed processing of large datasets across clusters of coomdity computers using simple programming models.
+- Haddop chatcrerstics:
+	- Scalable - Can follow both horizontal and vertical scaling
+	- Flexible - Can store huge data and decide to use it later
+	- Reliable - Stores copies of the data
+	- Economical
+
+====== Hadoop core components ======
+	Hadoop Distributed File System(HDFS) [Storage]
+	yet anaother resoucre negotiator(YARN)
+	Map Reduce(programming methodolog)
+
+====== Core data processing ======
+- SPARK SQL and Data Frames
+	- data frame programming abstraction
+	- complex analytics with SQL
+- SPARK Streaming
+	- process real time data
+	- analyze streaming and historical data
+	- use similar code for batch data and real time data
+- ML Lib
+	- provides scalable machine learning
+	- Works in memory[100 time sfaster than map reduce]
+- graphX
+	- graph computation engine bult on top of spark that eneable working with graph structured data at scale.
+	- Intoduces a new graph abstraction,the directed multigraph.
+	- Useful for visuzliaing graphs for social networks.
+(Pyspark is written in Scala)
+	- pyspark in python wrapper around spark core
+
+====== HADOOP ======
+- hadoop is a distributed cluster
+- It was the big data platform
+- Compute system and storage system closely integrated
+
+
+====== Components of HADOOP Ecosystem ======
+- OOZIE - It makes the JobFlow
+	- OOzie is a workflow or coordination system used to manage the hadoop jobs
+
+- Airlfow - also used for making JObFLOW[but it uses Python]
+	  ->Name node(master service)
+	  - name node is a mster service that stores meta data of each data blocks
+	  - (location,size,no. of replicas,permission Replicas = dfs.replica = 3(default) replicas will be such way that no two same blocks are placd 
+	  - within same DataNode HDFS manages DATA blocks in such a way that it is always highly Available. if we wll not have name nodes
+	  - we will dont have condition name nodes run out of storage,avaialibilty Clutser --> Collection of racks
+
+====== HDFS Version 2 ======
+
+- Edit Logs:
+	- Change in FSImage from last snapshot
+
+- FS Image:
+	- FSImage is point in time snapshot of hhdfs cluster
+
+- Namespaces: 
+	- One of the content stored in FSImage, HDFS path to datablocks
+	- When active namme node is DOwn standby Name Node will automatically be new active namenode
+- Zookeeper:
+	- It is a coordinator whcih check health status of active name node
+	- if the zookeper found the particular node is going down it will allocate a different resource as actie node on the basis of resources
+
+
+++++++ ====== 17th March 2023 ====== ++++++
+
+====== HDFS SNAPSHOT ======
+- Hadoop 2 adds support for file system snapshots. A snapshot is a point-in-tim image of the entire file system or a sub tree of a file system.
+- Portection against user errors: 
+	- An admin can set up a process to take snapshots peridocally. if a user accidently delete files, these can be restrored from the snapshot that contains file.
+
+- Question 1: 
+	- Is hadoop good for processing small no. of large block size or large number of small block size?
+	- - HDFS uses large block size to store data,which generates less no. of namespaces resulting into burdon on Name Node.
+	- - Large no. of small size blocks --> More metadata --> More resources required by name node
+
+- Question 2: 
+	- Can multiple clients request to perform. Write to HDFS at same time?
+	- - HDFC follows write once read many
+
+- Question 3: 
+	- Namenode safemode
+	- HDFS goes into read only mode. No clinet will be allowed to perform write or update.
+	- command :HDFS dfs admin -safemode leave.
+
+- What is heartbeat in HDFS?
+	- It is a signal which sent from datanode to namenode periodically to Namenode
+
+- WHat is fsck in hadoop?
+	- In Hadoop, fsck (file system check) is a command-line tool used to check the health and status of the Hadoop Distributed File System (HDFS). 
+	- The fsck command inspects the HDFS filesystem metadata and checks for any inconsistencies or errors in the file system.
+
+	- The fsck tool analyzes the following aspects of the HDFS:
+
+- Blocks: The tool checks the block reports from the DataNodes and verifies that the blocks are available and correctly replicated across the DataNodes.
+
+- Files: The tool checks the HDFS namespace for any missing, corrupted, or under-replicated files.
+
+- Snapshots: The tool checks the snapshots taken on the HDFS to ensure they are consistent and free from any errors.
+
+- Quotas: The tool checks the quota limits set on the HDFS directories to ensure they are not exceeded.
+
+- The fsck tool provides a report on the state of the HDFS, including the number of missing blocks, under-replicated blocks, 
+  and corrupted blocks. This information can be used to take corrective measures to fix any issues identified in the HDFS.
+
+- What happends when a data nodes goes down to replicas of data blocks?
+	- When data nodes goes down new replicas of blocks present in data node wil be created,
+	  when the data node which was down is up again the newly create datablocks will automatically deleted.
+
+- How many blocks will be create for a file sze of 130 mb. What will be sizes of Datablocks?
+	- The first block will be 128 MB in size The second block will be 2 MB in size
+
+====== Hadoop types of Nodes ======
+1. Name node
+2. secondry name node
+3. data node
+4. recource manager
+5. Node manager
+
+====== YARN (Yet Another Resource Negotiator) ======
+
+- Job scheduler: It works as pure scheduler. 
+- It does not play any role in executing Job.
+- Allocate the resources to each Job. 
+- Schedulers scheduler Job by following (Capacity,Fair,FIFO) (FAIR - it will average out the resources to all submit JOB)
