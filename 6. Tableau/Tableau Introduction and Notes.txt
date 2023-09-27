@@ -1,0 +1,49 @@
+
+ /$$$$$$$$        /$$       /$$                                    
+|__  $$__/       | $$      | $$                                    
+   | $$  /$$$$$$ | $$$$$$$ | $$  /$$$$$$   /$$$$$$  /$$   /$$      
+   | $$ |____  $$| $$__  $$| $$ /$$__  $$ |____  $$| $$  | $$      
+   | $$  /$$$$$$$| $$  \ $$| $$| $$$$$$$$  /$$$$$$$| $$  | $$      
+   | $$ /$$__  $$| $$  | $$| $$| $$_____/ /$$__  $$| $$  | $$      
+   | $$|  $$$$$$$| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$|  $$$$$$/      
+   |__/ \_______/|_______/ |__/ \_______/ \_______/ \______/       
+                                                                   
+                                                                   
+- Tableau is able to handle around 76 DataBases and 
+- The most Costly one compared to other Data visualization tools
+  present in the market
+
+5 important components of Tableau are:
+	 |---	1. Desktop
+	 |---	2. Public
+Tableau	-|---	3. Server
+	 |---	4. Reader
+	 |---	5. Prep
+
+
+
+====== 20th April 2023 ======
+
+- Tableau sets and set unions (left, right, inner, full joins)
+
+- extract filter - 1mb volume - (stores only the wanted data in the storage)
+- country - IND US UK
+-- IND - 500
+-- US - 1000
+-- UK - 700
+- total records = 2200
+
+
+- data source filter - 5mb volume - (it stores all the records but shows only the wanted information)
+- country - IND US UK
+-- IND - 500
+-- US - 1000
+-- UK - 700
+- total records = 2200
+
+
+====== 24th April 2023 ======
+
+- sheet level components: 
+
+- dashboard level components: sheets, objects, filters
